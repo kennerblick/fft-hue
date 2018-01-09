@@ -1,3 +1,21 @@
+Skript basiert auf dem fft-hue Skript von alelouis
+Es ist noch am Anfang der Entwicklung als Alpha bzw. nur zum Testen. Jeder kann hier gern seinen Senf dazugeben.
+
+Skript-Änderungen:
+Berechnung des Peak
+Auf dem Bildschirm wird der Peak als Balken angezeigt
+Es gibt eine automatische Lautstärkeanpassung bis auf eine bestimmte MIndestlautstärke, die ist natürlich von dem verwendeten Mikrofon abhängig. Das Device wird manuell in der Zeile
+
+stream=p.open(format=pyaudio.paInt16,channels=1,rate=44100,input=True,frames_per_buffer=chunk, input_device_index=2)
+
+festgelegt. Die Rate ist hier manuell eingetragen, um damit etwas zu experimentieren.
+
+Ich benutze das Skript mit einer Hue-Bridge v1. Deswegen kommen die Signale noch etwas träge an den Lichtern an und ab > 2 Leuchten passt der Takt nicht mehr. Besorge mir demnächst eine aktuell Bridge.
+
+Folgende Varianten wünsche ich mir für dieses Tool:
+Im Moment rotieren die Farbwerte einfach nur und die Helligkeit wird durch die Lautstärke beeinflusst. Ich möchte, dass die Lampen ihre Farbe nach der Frequenz wechseln oder verschiedene Lampen sich nach verschiedenen Frequenzen (bass, mid, treble) richten.
+
+
 # fft-hue
 
 Python script based on Fast Fourier Transform to dynamically animate your Philips Hue lights.
@@ -10,7 +28,7 @@ Python script based on Fast Fourier Transform to dynamically animate your Philip
   r_1 = requests.put('http://' + hue_bridge_ip + '/api/' + user_id 
   +'/lights/1/state', data='{"bri": ' + str(bri) +', "transitiontime" : 1, "hue": ' + hue +'}')
   ```
-4. Run script `python fft_hue.py`
+4. Run script `python fft-hue-debug.py`
 5. Make some noises
 ***
 ### Tweakings
